@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link rel="stylesheet" href="src/styles.css">
+        
+  </head>
+
+</head>
+<body>
+   <div class="container">
+    <div class="weather-app-wrapper">
+    <div class="weather-app">
+        <br>
+       
+        <form class="search-form" id="search-form">
+            <div class="row">
+                <div class="col">
+                <input 
+                    type="text" 
+                    placeholder="Enter a City" 
+                    autocomplete="off" 
+                    autofocus="on" 
+                    class="teste"
+                    id="search-text-input"
+                />
+            </div>
+            <div class="col">
+                <input type="submit" 
+                class="btn" 
+                value="Search">
+            </button>
+            </div>
+            <div> <button
+                id="currentLocationButton"
+                type="button"
+                class="current"
+              >
+                Current Location
+              </button></div>
+
+            </div>
+        </form>
+        <br>
+        <div class="row">
+            <div class="col"><h1 id="cityName">Atlanta </h1>
+            <p class="dateTime" id="dateTime">
+            </p>
+            </div>
+            <div class="col">
+                <p>Clouds
+                <br>
+                H: 28°C L: 24°C
+                <br>
+                Precipitation: 25%
+                <br>
+                Wind: 12 km/h</p>
+            </div>
+        </div>
+        
+        <div>
+        <h2>
+        <span id="temperature">28</span><span id="celius"><a href="#">°C</a></span> | <span id="fahrenheit"><a href="#">°F</a></span>
+        </h2>
+        </div>
+        <br>
+    <br />
+    <div class="container-c">
+      <div class="row">
+        <div class="col-3">Tomorrow</div>
+        <div class="col-3">Monday</div>
+        <div class="col-3">Tuesday</div>
+        <div class="col-3">Wednesday</div>
+      </div>
+    </div>
+    <div class="container-a">
+      <div class="row">
+        <div class="col-3">☀️</div>
+        <div class="col-3">🌤</div>
+        <div class="col-3">☀️</div>
+        <div class="col-3">🌦</div>
+      </div>
+    </div>
+    <div class="container-b">
+      <div class="row">
+        <div class="col-3">10 °C | 20 °C</div>
+        <div class="col-3">10 °C | 28 °C</div>
+        <div class="col-3">9 °C | 19 °C</div>
+        <div class="col-3">10 °C | 20 °C</div>
+      </div>
+    </div>
+    <style>
+    .weather-app {
+    border: 0.5px solid #2E2C4C;;
+    border-radius: 20px;
+background: linear-gradient(108.1deg, rgb(167, 220, 225) 11.2%, rgb(217, 239, 242) 88.9%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+    margin: 40px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #2E2C4C; 
+    box-shadow: 7px 5px 5px -2px rgba(0,0,0,0.23)
+}
+.container {
+    text-align: center;
+}
+.container-a {
+    text-align: center;
+    font-size: 50px;
+}
+.container-b {
+    text-align: center;
+}
+.container-c {
+    text-align: center;
+    font-weight: bolder;
+}
+.city-input {
+    color: #235784;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-weight: bolder;
+}
+h2 {
+     color:black;
+     font-weight: bolder;
+}
+.col-3 {
+    color: #235784;
+}
+.teste {
+  width: 90%;
+   border: 0.5px solid  #235784;
+border-radius: 10px;
+height: 35px;
+margin-left: 170px;
+}
+h3 {
+    color: #235784;
+    font-size: 25px;
+}
+p {
+    margin-bottom: auto;
+}
+       .btn:hover {
+          background: white;
+          color: black;
+          border: 1px solid black;
+        }
+         .btn {
+          border: 1px solid  #235784;
+          background: #235784;
+          color: #fff;
+          font-size: 15px;
+          line-height: 22px;
+          padding: 6px 14px;
+          border-radius: 10px;
+          transition: all 200ms ease;
+          box-shadow: rgba(37, 39, 89, 0.08) 0px 8px 8px 0;
+          cursor: pointer;
+          position: absolute;
+          width: 100px;
+     
+
+        }
+        .current-city {
+          text-align:center;
+          font-size: 30px;
+          color: #235784;
+          font-weight: bolder;
+        }
+        .current {
+        border: 1px solid  #235784;
+          background: #235784;
+          color: #fff;
+          font-size: 15px;
+          line-height: 22px;
+          padding: 4px 12px;
+          border-radius: 10px;
+          transition: all 200ms ease;
+          box-shadow: rgba(37, 39, 89, 0.08) 0px 8px 8px 0;
+          cursor: pointer;
+          margin-top: 20px;
+        }
+    </style>
+    <script>
+      function formatDate(date) {
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = currentTime.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let dayindex = currentTime.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let month = currentTime.getMonth();
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  let year = currentTime.getFullYear();
+  let day = currentTime.getDate();
+  return `${days[dayindex]}, ${months[month]} ${day}, ${year} | ${hours}:${minutes}`;
+}
+
+let dateElement = document.querySelector("#dateTime");
+let currentTime = new Date();
+
+dateElement.innerHTML = formatDate(currentTime);
+
+function displayWeather(response) {
+  let h1 = document.querySelector("#cityName");
+  let mainTemp = Math.round(response.data.main.temp);
+  h1.innerHTML = response.data.name;
+  let h2 = document.querySelector("#temperature");
+  h2.innerHTML = `${mainTemp}`;
+}
+function search(city) {
+  let key = `a95c2c6739994ba4903e007ee817e7d1`;
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=${units}`;
+  axios.get(apiUrl).then(displayWeather);
+}
+
+function cityImput(event) {
+  event.preventDefault();
+  let city = document.querySelector("#search-text-input").value;
+
+  search(city);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", cityImput);
+
+//current location
+function showCurrentLocation(position) {
+  let key = `a95c2c6739994ba4903e007ee817e7d1`;
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=${units}`;
+
+  axios.get(apiUrl).then(displayWeather);
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(showCurrentLocation);
+}
+let locationButton = document.querySelector("#currentLocationButton");
+locationButton.addEventListener("click", getCurrentLocation);
+    </script>
+  </body>
+</html>
